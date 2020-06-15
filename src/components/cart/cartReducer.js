@@ -17,18 +17,25 @@ const addCart = (state, action) => {
         return obj.id === action.value.id
     })                        
 
-    if(search.length == 0){                
-        newState.push({
-            id: action.value.id,
-            name: action.value.name,
-            price: action.value.price * action.qty,
-            qty: action.qty
-        });
+    if(search.length == 0){          
+        if(action.qty > 0){
+            newState.push({
+                id: action.value.id,
+                name: action.value.name,
+                price: action.value.price * action.qty,
+                qty: action.qty
+            });
+        }        
     }
     else{
-        const idx = newState.indexOf(search[0])                                
-        newState[idx].qty += action.qty
-        newState[idx].price += (action.value.price * action.qty)
+        const idx = newState.indexOf(search[0])
+        if((newState[idx].qty + action.qty) > 0){
+            newState[idx].qty += action.qty
+            newState[idx].price += (action.value.price * action.qty)
+        }  
+        else{
+            newState = newState.filter(e => e.id != newState[idx].id)
+        }      
     }                        
     return newState;    
 }
