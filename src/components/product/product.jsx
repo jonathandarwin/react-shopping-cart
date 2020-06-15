@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-function Product({product}) {                      
+const Product = ({product}) => {                      
         const dispatch = useDispatch()
         
         let qty = createRef()

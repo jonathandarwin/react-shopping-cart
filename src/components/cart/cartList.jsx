@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Cart from './cart'
 
-function CartList(){
+const CartList = () => {
 
     const cartState = useSelector(state => state.CartReducer)
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const generateCart = (cartState, dispatch) => {
     if(cartState.length == 0)
         return (
             <span className="text-muted">
-                No product in your card right now.
+                No product in your cart right now.
             </span>
         )
         

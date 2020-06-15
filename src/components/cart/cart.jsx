@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useDispatch } from 'react-redux'
 
-function Cart({cartList}) {         
+const Cart = ({cartList}) => {         
     const dispatch = useDispatch()
 
     return (  

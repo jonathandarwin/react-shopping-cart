@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Product from './product';
 
-
-function ProductList(){        
+const ProductList = () => {        
     const productListState = useSelector(state => state.ProductListReducer)        
 
     return ( 
