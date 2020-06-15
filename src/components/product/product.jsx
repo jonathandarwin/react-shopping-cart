@@ -6,8 +6,8 @@ function Product({product}) {
         
         let qty = createRef()
 
-        return ( 
-            <React.Fragment>
+        return (             
+            <div className="col-md-3 p-3" key={product.id}>
                 <span>{product.name}</span>
                 <br />
                 <input ref={qty} type="number" className="input form-control"/>                
@@ -15,7 +15,7 @@ function Product({product}) {
                 <br />
                 <br />
                 <button className="form-control btn btn-primary" onClick={() => dispatch(addCart(product, parseInt(qty.current.value)))}>Add To Cart</button>
-            </React.Fragment>            
+            </div>                
         );
 }
 

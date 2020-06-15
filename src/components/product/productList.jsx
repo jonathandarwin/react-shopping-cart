@@ -16,9 +16,8 @@ function ProductList(){
 const generateProduct = productListState => {
     return productListState.map(product => {
         return (
-            <div className="col-md-3 m-2" key={product.id}>
-                <Product key={product.id} product={product} />
-            </div>
+            <Product key={product.id} product={product} />
+            
         )
     })
 }
