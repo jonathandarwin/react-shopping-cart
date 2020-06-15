@@ -10,12 +10,14 @@ const CartReducer = (state = [], action) => {
                 temp.push({
                     id: action.value.id,
                     name: action.value.name,
+                    price: action.value.price * action.qty,
                     qty: action.qty
                 });
             }
             else{
                 const idx = temp.indexOf(search[0])                                
                 temp[idx].qty += action.qty
+                temp[idx].price += (action.value.price * action.qty)
             }                        
             return temp;            
     }    

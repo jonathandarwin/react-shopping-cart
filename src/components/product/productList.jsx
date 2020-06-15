@@ -4,17 +4,17 @@ import Product from './product';
 
 
 function ProductList(){        
-        const selector = useSelector(state => state.ProductListReducer)        
+    const productListState = useSelector(state => state.ProductListReducer)        
 
-        return ( 
-            <React.Fragment>                
-                {generateProduct(selector)}
-            </React.Fragment>            
-        );    
+    return ( 
+        <React.Fragment>                
+            {generateProduct(productListState)}
+        </React.Fragment>            
+    );    
 }
 
-const generateProduct = selector => {
-    return selector.map(product => {
+const generateProduct = productListState => {
+    return productListState.map(product => {
         return (
             <div className="col-md-3 m-2" key={product.id}>
                 <Product key={product.id} product={product} />
