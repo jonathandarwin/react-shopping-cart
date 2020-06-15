@@ -1,24 +1,24 @@
 const CartReducer = (state = [], action) => {    
     switch(action.type){
-        case "ADD" :                         
-            console.log('add cart')
+        case "ADD" :                                     
             return addCart(state, action)            
-
-        case "DECREMENT_CART" :
-            console.log('decrement cart')
+        case "DECREMENT_CART" :            
             return decrementCart(state, action)            
+        case "RESET_CART":
+            return resetCart(state, action)
+
     }    
     return state;
 }
 
 const addCart = (state, action) => {
-    let temp = [...state]      
-    const search = temp.filter(obj => {
+    let newState = [...state]      
+    const search = newState.filter(obj => {
         return obj.id === action.value.id
     })                        
 
     if(search.length == 0){                
-        temp.push({
+        newState.push({
             id: action.value.id,
             name: action.value.name,
             price: action.value.price * action.qty,
@@ -26,30 +26,34 @@ const addCart = (state, action) => {
         });
     }
     else{
-        const idx = temp.indexOf(search[0])                                
-        temp[idx].qty += action.qty
-        temp[idx].price += (action.value.price * action.qty)
+        const idx = newState.indexOf(search[0])                                
+        newState[idx].qty += action.qty
+        newState[idx].price += (action.value.price * action.qty)
     }                        
-    return temp;    
+    return newState;    
 }
 
 const decrementCart = (state, action) => {
     const id = action.id            
-    let temp = [...state]      
-    const search = temp.filter(e => e.id === id)
+    let newState = [...state]      
+    const search = newState.filter(e => e.id === id)
 
     if(search.length == 1){
-        const idx = temp.indexOf(search[0])                
-        if(temp[idx].qty == 1){
-            temp = temp.filter(e => e.id != id)                    
+        const idx = newState.indexOf(search[0])                
+        if(newState[idx].qty == 1){
+            newState = newState.filter(e => e.id != id)                    
         }
         else{
-            let originalPrice = temp[idx].price / temp[idx].qty
-            temp[idx].qty--;
-            temp[idx].price -= originalPrice;                    
+            let originalPrice = newState[idx].price / newState[idx].qty
+            newState[idx].qty--;
+            newState[idx].price -= originalPrice;                    
         }                
     }
-    return temp;
+    return newState;
+}
+
+const resetCart = (state, action) => {
+    return []
 }
 
 export default CartReducer
