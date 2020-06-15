@@ -2,6 +2,10 @@
   border-right: 1px solid #ccc !important;
 }
 
+.ic-delete {
+  color: red !important
+}
+
 .App {
   text-align: center;
 }
